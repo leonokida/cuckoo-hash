@@ -91,6 +91,28 @@ void remove_ht(int k, int **h1t, int **h2t) {
     (*h1t)[i1] = REMOVED;
 }
 
+int compare_nodes(const void *a, const void *b) {
+    node_t *nodeA = (node_t *)a;
+    node_t *nodeB = (node_t *)b;
+
+    if (nodeA->key < nodeB->key)
+        return -1;
+    else if (nodeA->key > nodeB->key)
+        return 1;
+    
+    if (nodeA->table < nodeB->table)
+        return -1;
+    else if (nodeA->table > nodeB->table)
+        return 1;
+    
+    if (nodeA->index < nodeB->index)
+        return -1;
+    else if (nodeA->index > nodeB->index)
+        return 1;
+
+    return 0;
+}
+
 int main() {
     // Initializes H1 and H2 hash tables
     int *h1t = create_ht(M);
@@ -144,6 +166,9 @@ int main() {
         }
 
     }
+
+    qsort(hash_nodes, M*2, sizeof(node_t), compare_nodes);
+    
 
     for(int i = 0; i < M * 2; i++){
         if(hash_nodes[i].key != -1){

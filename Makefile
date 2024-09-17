@@ -1,4 +1,4 @@
-# Leon Augusto Okida Gonçalves
+# Leon Okida e Pedro Willian
 
 CFLAGS = -lm -Wall -std=c99 # compilation flag
 
